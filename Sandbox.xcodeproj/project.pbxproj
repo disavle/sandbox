@@ -12,19 +12,10 @@
 		0C249D602A6901C1004D2044 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C249D5F2A6901C1004D2044 /* Assets.xcassets */; };
 		0C249D632A6901C1004D2044 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C249D622A6901C1004D2044 /* Preview Assets.xcassets */; };
 		0C249D6D2A6901C1004D2044 /* SandboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C249D6C2A6901C1004D2044 /* SandboxTests.swift */; };
-		0C249D772A6901C1004D2044 /* SandboxUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C249D762A6901C1004D2044 /* SandboxUITests.swift */; };
-		0C249D792A6901C1004D2044 /* SandboxUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C249D782A6901C1004D2044 /* SandboxUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		0C249D692A6901C1004D2044 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0C249D502A6901C0004D2044 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0C249D572A6901C0004D2044;
-			remoteInfo = Sandbox;
-		};
-		0C249D732A6901C1004D2044 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0C249D502A6901C0004D2044 /* Project object */;
 			proxyType = 1;
@@ -41,9 +32,6 @@
 		0C249D622A6901C1004D2044 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0C249D682A6901C1004D2044 /* SandboxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SandboxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C249D6C2A6901C1004D2044 /* SandboxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxTests.swift; sourceTree = "<group>"; };
-		0C249D722A6901C1004D2044 /* SandboxUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SandboxUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0C249D762A6901C1004D2044 /* SandboxUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxUITests.swift; sourceTree = "<group>"; };
-		0C249D782A6901C1004D2044 /* SandboxUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,13 +49,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0C249D6F2A6901C1004D2044 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -76,7 +57,6 @@
 			children = (
 				0C249D5A2A6901C0004D2044 /* Sandbox */,
 				0C249D6B2A6901C1004D2044 /* SandboxTests */,
-				0C249D752A6901C1004D2044 /* SandboxUITests */,
 				0C249D592A6901C0004D2044 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -86,7 +66,6 @@
 			children = (
 				0C249D582A6901C0004D2044 /* Sandbox.app */,
 				0C249D682A6901C1004D2044 /* SandboxTests.xctest */,
-				0C249D722A6901C1004D2044 /* SandboxUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -116,15 +95,6 @@
 				0C249D6C2A6901C1004D2044 /* SandboxTests.swift */,
 			);
 			path = SandboxTests;
-			sourceTree = "<group>";
-		};
-		0C249D752A6901C1004D2044 /* SandboxUITests */ = {
-			isa = PBXGroup;
-			children = (
-				0C249D762A6901C1004D2044 /* SandboxUITests.swift */,
-				0C249D782A6901C1004D2044 /* SandboxUITestsLaunchTests.swift */,
-			);
-			path = SandboxUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,24 +135,6 @@
 			productReference = 0C249D682A6901C1004D2044 /* SandboxTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		0C249D712A6901C1004D2044 /* SandboxUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0C249D822A6901C1004D2044 /* Build configuration list for PBXNativeTarget "SandboxUITests" */;
-			buildPhases = (
-				0C249D6E2A6901C1004D2044 /* Sources */,
-				0C249D6F2A6901C1004D2044 /* Frameworks */,
-				0C249D702A6901C1004D2044 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				0C249D742A6901C1004D2044 /* PBXTargetDependency */,
-			);
-			name = SandboxUITests;
-			productName = SandboxUITests;
-			productReference = 0C249D722A6901C1004D2044 /* SandboxUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -197,10 +149,6 @@
 						CreatedOnToolsVersion = 14.3.1;
 					};
 					0C249D672A6901C1004D2044 = {
-						CreatedOnToolsVersion = 14.3.1;
-						TestTargetID = 0C249D572A6901C0004D2044;
-					};
-					0C249D712A6901C1004D2044 = {
 						CreatedOnToolsVersion = 14.3.1;
 						TestTargetID = 0C249D572A6901C0004D2044;
 					};
@@ -221,7 +169,6 @@
 			targets = (
 				0C249D572A6901C0004D2044 /* Sandbox */,
 				0C249D672A6901C1004D2044 /* SandboxTests */,
-				0C249D712A6901C1004D2044 /* SandboxUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -237,13 +184,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		0C249D662A6901C1004D2044 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0C249D702A6901C1004D2044 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -270,15 +210,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0C249D6E2A6901C1004D2044 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0C249D792A6901C1004D2044 /* SandboxUITestsLaunchTests.swift in Sources */,
-				0C249D772A6901C1004D2044 /* SandboxUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -286,11 +217,6 @@
 			isa = PBXTargetDependency;
 			target = 0C249D572A6901C0004D2044 /* Sandbox */;
 			targetProxy = 0C249D692A6901C1004D2044 /* PBXContainerItemProxy */;
-		};
-		0C249D742A6901C1004D2044 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0C249D572A6901C0004D2044 /* Sandbox */;
-			targetProxy = 0C249D732A6901C1004D2044 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -509,42 +435,6 @@
 			};
 			name = Release;
 		};
-		0C249D832A6901C1004D2044 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7P93X87YPP;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = disavle.SandboxUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Sandbox;
-			};
-			name = Debug;
-		};
-		0C249D842A6901C1004D2044 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7P93X87YPP;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = disavle.SandboxUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Sandbox;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -571,15 +461,6 @@
 			buildConfigurations = (
 				0C249D802A6901C1004D2044 /* Debug */,
 				0C249D812A6901C1004D2044 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		0C249D822A6901C1004D2044 /* Build configuration list for PBXNativeTarget "SandboxUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0C249D832A6901C1004D2044 /* Debug */,
-				0C249D842A6901C1004D2044 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
