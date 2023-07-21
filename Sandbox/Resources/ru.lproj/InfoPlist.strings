@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.strings
+  Sandbox
+
+  Created by Dima Disavle on 20.07.2023.
+  
+*/
+
+"CFBundleDisplayName" = "Песочница";
+
+"CFBundleName" = "Песочница";
