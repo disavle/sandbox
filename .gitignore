@@ -28,6 +28,7 @@ DerivedData
 *.xcodeproj
 
 *.pbxproj
+
 # Tuist
 Derived/
 /Tuist/Dependencies/*
