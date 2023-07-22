@@ -8,6 +8,12 @@ public var scripts: [TargetScript] {
 	return scripts
 }
 
+let baseSettings: [String: SettingValue] = [
+	"MARKETING_VERSION": "1.0", // Version
+	"CURRENT_PROJECT_VERSION": "1", // Build
+	"ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS": "YES" // App Icons Source
+]
+
 let target = Target(
 	name: "Sandbox",
 	platform: .iOS,
@@ -21,7 +27,11 @@ let target = Target(
 	scripts: scripts,
 	dependencies: [
 		.external(name: "SnapshotTesting")
-	]
+	],
+	settings: .settings(
+		base: baseSettings,
+		configurations: [.debug(name: .debug), .release(name: .release)]
+	)
 )
 
 let testTarget = Target(

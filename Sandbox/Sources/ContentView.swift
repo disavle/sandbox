@@ -30,15 +30,15 @@ struct ContentView: View {
 			if let error = error {
 				print(error.localizedDescription)
 			} else {
+				if appIcon == .dark {
+					appIcon = .light
+					(UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first!.overrideUserInterfaceStyle = .dark
+				} else {
+					appIcon = .dark
+					(UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first!.overrideUserInterfaceStyle = .light
+				}
 				print("Success!")
 			}
-		}
-		if appIcon == .dark {
-			appIcon = .light
-			(UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first!.overrideUserInterfaceStyle = .dark
-		} else {
-			appIcon = .dark
-			(UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first!.overrideUserInterfaceStyle = .light
 		}
 	}
 }
