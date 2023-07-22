@@ -3,7 +3,7 @@ import ProjectDescription
 public var scripts: [TargetScript] {
 	var scripts = [TargetScript]()
 	let swiftLintScriptString = "SwiftLint/swiftlint --fix && SwiftLint/swiftlint"
-	let swiftLintScript = TargetScript.post(script: swiftLintScriptString, name: "SwiftLint")
+	let swiftLintScript = TargetScript.post(script: swiftLintScriptString, name: "SwiftLint", basedOnDependencyAnalysis: false)
 	scripts.append(swiftLintScript)
 	return scripts
 }
