@@ -125,7 +125,7 @@ struct LeftsideMenuView: View {
 			VStack(spacing: 0) {
 				HStack(spacing: 15) {
 					Button {
-						withAnimation {
+						withAnimation(.easeInOut(duration: 0.2)) {
 							self.show.toggle()
 						}
 					} label: {
@@ -160,7 +160,6 @@ struct LeftsideMenuView: View {
 				y: self.show ? 15 : 0
 			)
 			.rotationEffect(.init(degrees: self.show ? -5 : 0))
-			.animation(.easeInOut(duration: 0.25), value: show)
 		} .background(Color(UIColor.systemPink).edgesIgnoringSafeArea(.all))
 			.edgesIgnoringSafeArea(.all)
 	}
