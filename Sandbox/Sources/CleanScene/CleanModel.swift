@@ -8,11 +8,6 @@
 
 import Foundation
 
-/// Модель для обновления UI.
-final class CleanViewModel: ObservableObject {
-	@Published var props: CleanModel.Main.Props = .initial
-}
-
 /// Модель сцены Пример.
 enum CleanModel {
 	/// Входная модель сцены Пример.

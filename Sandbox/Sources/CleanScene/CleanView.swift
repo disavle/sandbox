@@ -46,19 +46,27 @@ struct CleanView: View {
 	}
 }
 
-// MARK: - Preview.
-/// Вспомогательная функция для превью верстки.
-struct CleanView_Previews: PreviewProvider {
-	static var previews: some View {
-		CleanView()
-	}
-}
-
-// MARK: - ICleanView implementation
+// MARK: - ICleanView implementation.
 extension CleanView: ICleanView {
 	/// Рендер отображения.
 	/// - Parameter props: Модель данных для отображения.
 	func render(_ props: CleanModel.Main.Props) {
 		viewModel.props = props
+	}
+}
+
+// MARK: - ViewModel.
+extension CleanView {
+	/// Модель для обновления UI.
+	final class CleanViewModel: ObservableObject {
+		@Published var props: CleanModel.Main.Props = .initial
+	}
+}
+
+// MARK: - Preview.
+/// Вспомогательная функция для превью верстки.
+struct CleanView_Previews: PreviewProvider {
+	static var previews: some View {
+		CleanView()
 	}
 }
