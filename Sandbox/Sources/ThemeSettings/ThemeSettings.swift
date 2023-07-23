@@ -1,13 +1,14 @@
 //
-//  ContentView.swift
+//  ThemeSettings.swift
 //  Sandbox
 //
-//  Created by Dima Disavle on 20.07.2023.
+//  Created by Dima Disavle on 23.07.2023.
+//  Copyright © 2023 Disavle. All rights reserved.
 //
 
 import SwiftUI
 
-struct ContentView: View {
+struct ThemeSettings: View {
 	@State var appIcon: AppIcon = .light
 
 	var body: some View {
@@ -83,8 +84,8 @@ enum AppIcon: String {
 	}
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct ThemeSettings_Previews: PreviewProvider {
 	static var previews: some View {
-		ContentView()
+		ThemeSettings()
 	}
 }
