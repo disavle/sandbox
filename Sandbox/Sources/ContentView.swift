@@ -32,10 +32,12 @@ struct ContentView: View {
 			} else {
 				if appIcon == .dark {
 					appIcon = .light
-					(UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first!.overrideUserInterfaceStyle = .dark
+					guard let scene = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first else { return }
+					scene.overrideUserInterfaceStyle = .dark
 				} else {
 					appIcon = .dark
-					(UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first!.overrideUserInterfaceStyle = .light
+					guard let scene = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first else { return }
+					scene.overrideUserInterfaceStyle = .light
 				}
 				print("Success!")
 			}

@@ -5,3 +5,7 @@
   Created by Dima Disavle on 21.07.2023.
   
 */
+
+// MARK: - CleanScene
+
+"CleanScene.navBarTitle" = "Example";

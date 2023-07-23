@@ -11,7 +11,12 @@ import SwiftUI
 struct SandboxApp: App {
 	var body: some Scene {
 		WindowGroup {
-			ContentView()
+			CleanView().assembly(
+				inputModel: CleanModel.InputModel(name: "Дима", age: 21),
+				outputModel: CleanModel.OutputModel {
+					print("Presenting second view.")
+				}
+			)
 		}
 	}
 }

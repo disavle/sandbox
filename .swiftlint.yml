@@ -29,7 +29,6 @@ opt_in_rules:
   - fatal_error_message
   - first_where
   - force_unwrapping
-  - implicitly_unwrapped_optional
   - indentation_width
   - last_where
   - legacy_random
@@ -109,3 +108,7 @@ vertical_whitespace:
 
 included:
   - Sandbox
+
+# настройка уровня вложения
+nesting:
+  type_level: 4 
