@@ -8,6 +8,11 @@
 
 import Foundation
 
+/// Модель для обновления UI.
+final class CleanViewModel: ObservableObject {
+	@Published var props: CleanModel.Main.Props = .initial
+}
+
 /// Модель сцены Пример.
 enum CleanModel {
 	/// Входная модель сцены Пример.
@@ -33,15 +38,11 @@ enum CleanModel {
 		}
 
 		/// Данные получаемые из Presenter.
-		struct ViewModel {
+		struct Props {
 			let name: String
 			let age: String
+
+			static let initial = Props(name: "", age: "")
 		}
 	}
-}
-
-// TODO: Как избавиться от копирования?
-final class CleanViewModel: ObservableObject {
-	@Published var name: String = ""
-	@Published var age: String = ""
 }

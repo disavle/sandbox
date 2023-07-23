@@ -11,8 +11,8 @@ import SwiftUI
 /// Протокол отображения сцены Пример.
 protocol ICleanView {
 	/// Рендер отображения.
-	/// - Parameter viewModel: Модель данных для отображения.
-	func render(_ viewModel: CleanModel.Main.ViewModel)
+	/// - Parameter props: Модель данных для отображения.
+	func render(_ props: CleanModel.Main.Props)
 }
 
 // MARK: - CleanView.
@@ -31,8 +31,8 @@ struct CleanView: View {
 				Color(UIColor.systemBackground)
 					.edgesIgnoringSafeArea(.all)
 				VStack {
-					Text(viewModel.name)
-					Text(viewModel.age)
+					Text(viewModel.props.name)
+					Text(viewModel.props.age)
 				}
 			}
 			.navigationTitle(SandboxStrings.Localizable.CleanScene.navBarTitle)
@@ -57,9 +57,8 @@ struct CleanView_Previews: PreviewProvider {
 // MARK: - ICleanView implementation
 extension CleanView: ICleanView {
 	/// Рендер отображения.
-	/// - Parameter viewModel: Модель данных для отображения.
-	func render(_ viewModel: CleanModel.Main.ViewModel) {
-		self.viewModel.name = viewModel.name
-		self.viewModel.age = viewModel.age
+	/// - Parameter props: Модель данных для отображения.
+	func render(_ props: CleanModel.Main.Props) {
+		viewModel.props = props
 	}
 }
