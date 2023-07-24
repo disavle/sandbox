@@ -55,7 +55,7 @@ extension CleanView: ICleanView {
 	}
 }
 
-// MARK: - ViewModel.
+// MARK: - ViewModel для биндинга.
 extension CleanView {
 	/// Модель для обновления UI.
 	final class CleanViewModel: ObservableObject {

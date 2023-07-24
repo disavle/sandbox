@@ -6,8 +6,6 @@
 //  Copyright © 2023 Disavle. All rights reserved.
 //
 
-import Foundation
-
 /// Модель сцены Пример.
 enum CleanModel {
 	/// Входная модель сцены Пример.
