@@ -24,6 +24,8 @@ struct CleanView: View {
 
 	var interactor: ICleanInteractor!
 
+	@State var isShow2View = false
+
 	// MARK: View.
 	var body: some View {
 		NavigationView {
@@ -33,6 +35,12 @@ struct CleanView: View {
 				VStack {
 					Text(viewModel.props.name)
 					Text(viewModel.props.age)
+					Button("Jopa") {
+						self.isShow2View.toggle()
+					}
+					NavigationLink(destination: ContentView(), isActive: $isShow2View) {
+						EmptyView()
+					}
 				}
 			}
 			.navigationTitle(SandboxStrings.Localizable.CleanScene.navBarTitle)
