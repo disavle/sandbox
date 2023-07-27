@@ -48,16 +48,15 @@ extension ICoordinator {
 	}
 }
 
-
-enum ViewScene: String, Identifiable {
-	var id: String {
-		self.rawValue
-	}
-	case content
-	case cleanView
-}
-
 final class AppCoordinator: ICoordinator {
+	enum ViewScene: String, Identifiable {
+		var id: String {
+			self.rawValue
+		}
+		case content
+		case cleanView
+	}
+
 	typealias CoordinatorSceneState = ViewScene
 	@Published var path: [CoordinatorSceneState] = [.cleanView]
 	@Published var sheet: CoordinatorSceneState?
