@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+// MARK: - ICoordinator
 protocol ICoordinator: ObservableObject {
 	associatedtype CoordinatorSceneState: Identifiable &
 	RawRepresentable where CoordinatorSceneState.RawValue: StringProtocol
@@ -48,6 +49,7 @@ extension ICoordinator {
 	}
 }
 
+// MARK: - AppCoordinator
 final class AppCoordinator: ICoordinator {
 	enum ViewScene: String, Identifiable {
 		var id: String {
@@ -78,6 +80,7 @@ final class AppCoordinator: ICoordinator {
 	}
 }
 
+// MARK: - AppCoordinatorView
 struct AppCoordinatorView: View {
 	@StateObject var coordinator: AppCoordinator
 
@@ -98,7 +101,6 @@ struct AppCoordinatorView: View {
 
 
 // MARK: - Support for NStack.
-
 struct NStack<Screen, ScreenView: View>: View {
 	@Binding var path: [Screen]
 	@ViewBuilder var buildView: (Screen) -> ScreenView
