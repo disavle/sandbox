@@ -1,5 +1,6 @@
 # Sandbox
 [![Sandbox](https://github.com/disavle/sandbox/actions/workflows/swift.yml/badge.svg?branch=dev)](https://github.com/disavle/sandbox/actions/workflows/swift.yml)
+[![GitHub](https://img.shields.io/github/license/disavle/sandbox)](https://github.com/disavle/sandbox/blob/dev/LICENSE)
 [![Tuist badge](https://img.shields.io/badge/Powered%20by-Tuist-blue)](https://tuist.io)
 
 ## Запуск проекта
