@@ -64,6 +64,7 @@ extension CleanView: ICleanView {
 // MARK: - ViewModel для биндинга.
 extension CleanView {
 	/// Модель для обновления UI.
+	@MainActor
 	final class CleanViewModel: ObservableObject {
 		@Published var props: CleanModel.Main.Props = .initial
 	}
