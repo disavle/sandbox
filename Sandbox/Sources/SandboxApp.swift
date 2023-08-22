@@ -11,6 +11,7 @@ import SwiftUI
 struct SandboxApp: App {
 	var body: some Scene {
 		WindowGroup {
+			// CleanSwift.
 			AppCoordinatorView(coordinator: AppCoordinator())
 		}
 	}
