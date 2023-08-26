@@ -20,11 +20,9 @@ protocol ICleanView {
 struct CleanView: View {
 	// MARK: Dependencies.
 	/// Модель данных для отображения.
-	@ObservedObject private var viewModel = CleanViewModel()
+	@ObservedObject var props: CleanView.Props = .initial
 
 	var interactor: ICleanInteractor!
-
-	@State var isShow2View = false
 
 	// MARK: View.
 	var body: some View {
@@ -32,20 +30,14 @@ struct CleanView: View {
 			Color(UIColor.systemBackground)
 				.edgesIgnoringSafeArea(.all)
 			VStack {
-				Text(viewModel.props.name)
-				Text(viewModel.props.age)
+				Text(props.name)
+				Text(props.age)
 				Button("Button") {
-					self.isShow2View.toggle()
-				}
-				NavigationLink(destination: ContentView(), isActive: $isShow2View) {
-					EmptyView()
+					self.interactor.showSecondScene()
 				}
 			}
 		}
 		.navigationTitle(SandboxStrings.Localizable.CleanScene.navBarTitle)
-		.navigationBarItems(trailing: Button(SandboxStrings.Localizable.CleanScene.navBarTitle.lowercased()) {
-			interactor.showSecondScene()
-		})
 		.onAppear {
 			interactor.start(CleanModel.Main.Request())
 		}
@@ -57,16 +49,19 @@ extension CleanView: ICleanView {
 	/// Рендер отображения.
 	/// - Parameter props: Модель данных для отображения.
 	func render(_ props: CleanModel.Main.Props) {
-		viewModel.props = props
+		self.props.name = props.name
+		self.props.age = props.age
 	}
 }
 
-// MARK: - ViewModel для биндинга.
-extension CleanView {
-	/// Модель для обновления UI.
+// MARK: - IProps.
+extension CleanView: IProps {
 	@MainActor
-	final class CleanViewModel: ObservableObject {
-		@Published var props: CleanModel.Main.Props = .initial
+	final class Props: ObservableObject {
+		@Published var name: String = ""
+		@Published var age: String = ""
+
+		static let initial = Props()
 	}
 }
 
