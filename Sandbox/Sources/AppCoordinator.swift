@@ -55,7 +55,7 @@ final class AppCoordinator: ICoordinator {
 		var id: String {
 			self.rawValue
 		}
-		case content
+		case themeView
 		case cleanView
 	}
 
@@ -67,13 +67,13 @@ final class AppCoordinator: ICoordinator {
 	@ViewBuilder
 	func build(_ view: CoordinatorSceneState) -> some View {
 		switch view {
-		case .content:
-			ContentView()
+		case .themeView:
+			ThemeViewView()
 		case .cleanView:
 			CleanView().assembly(
 				inputModel: CleanModel.InputModel(name: "Дима", age: 21),
 				outputModel: CleanModel.OutputModel {
-					self.push(.content)
+					self.push(.themeView)
 				}
 			)
 		}

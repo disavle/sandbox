@@ -65,6 +65,7 @@ extension CleanView: IProps {
 	}
 }
 
+#if DEBUG
 // MARK: - Preview.
 /// Вспомогательная функция для превью верстки.
 struct CleanView_Previews: PreviewProvider {
@@ -72,3 +73,4 @@ struct CleanView_Previews: PreviewProvider {
 		CleanView()
 	}
 }
+#endif
