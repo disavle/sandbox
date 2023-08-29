@@ -32,7 +32,7 @@ extension ___FILEBASENAMEASIDENTIFIER___: I___FILEBASENAMEASIDENTIFIER___ {
 	/// Отобразить на View.
 	/// - Parameter response: Модель данных для презентера.
 	func present(_ response: ___VARIABLE_sceneName___Model.Main.Response) {
-		let viewModel: ___VARIABLE_sceneName___Model.Main.Props = .init(name: response.name, age: String(response.age))
-		view.render(viewModel)
+		let props: ___VARIABLE_sceneName___Model.Main.Props = .init(example: "")
+		view.render(props)
 	}
 }

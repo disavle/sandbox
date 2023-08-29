@@ -38,7 +38,7 @@ extension ___FILEBASENAMEASIDENTIFIER___: I___FILEBASENAMEASIDENTIFIER___ {
 	/// Передать для подготовки отображения.
 	/// - Parameter request: Модель данных для интерактора.
 	func start(_ request: ___VARIABLE_sceneName___Model.Main.Request) {
-		let response: ___VARIABLE_sceneName___Model.Main.Response = .init(name: inputModel.name, age: inputModel.age)
+		let response: ___VARIABLE_sceneName___Model.Main.Response = .init()
 		presenter.present(response)
 	}
 }
