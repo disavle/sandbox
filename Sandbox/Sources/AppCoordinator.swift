@@ -68,7 +68,10 @@ final class AppCoordinator: ICoordinator {
 	func build(_ view: CoordinatorSceneState) -> some View {
 		switch view {
 		case .themeView:
-			ThemeViewView()
+			ThemeViewView().assembly(
+				inputModel: ThemeViewModel.InputModel(title: "Fuck SwiftUI!"),
+				outputModel: ThemeViewModel.OutputModel()
+			)
 		case .cleanView:
 			CleanView().assembly(
 				inputModel: CleanModel.InputModel(name: "Дима", age: 21),

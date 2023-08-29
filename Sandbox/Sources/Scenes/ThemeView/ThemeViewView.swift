@@ -30,7 +30,7 @@ struct ThemeViewView: View {
 
 	var body: some View {
 		VStack {
-			Text("Fuck SwiftUI!")
+			Text(props.title)
 			HStack {
 				Button(appIcon.buttonText) {
 					changeTheme()
@@ -40,6 +40,9 @@ struct ThemeViewView: View {
 				.background(Color(UIColor.label))
 			}
 			.clipShape(Capsule())
+		}
+		.onAppear {
+			interactor.start(ThemeViewModel.Main.Request())
 		}
 	}
 
