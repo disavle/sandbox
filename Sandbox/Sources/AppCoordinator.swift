@@ -8,64 +8,35 @@
 
 import SwiftUI
 
-// MARK: - ICoordinator
-protocol ICoordinator: ObservableObject {
-	associatedtype CoordinatorSceneState: Identifiable &
-	RawRepresentable where CoordinatorSceneState.RawValue: StringProtocol
-	associatedtype CoordinatorScene: View
-	var path: [CoordinatorSceneState] { get set }
-	var sheet: CoordinatorSceneState? { get set }
-	var fullScreen: CoordinatorSceneState? { get set }
-	func build(_ view: CoordinatorSceneState) -> CoordinatorScene
+/// Протокол координатор приложения.
+protocol IAppCoordinator: ICoordinator, ICoordinatorView {
+	func showCleanCoordinator()
 }
 
-extension ICoordinator {
-	func push(_ view: CoordinatorSceneState) {
-		path.append(view)
-	}
-
-	func present(sheet view: CoordinatorSceneState) {
-		sheet = view
-	}
-
-	func present(fullScreen view: CoordinatorSceneState) {
-		fullScreen = view
-	}
-
-	func pop() {
-		path.removeLast()
-	}
-
-	func popToRoot() {
-		path.removeLast(path.count)
-	}
-
-	func dismissSheet() {
-		sheet = nil
-	}
-
-	func dismissFullScreen() {
-		fullScreen = nil
-	}
-}
-
-// MARK: - AppCoordinator
-final class AppCoordinator: ICoordinator {
-	enum ViewScene: String, Identifiable {
-		var id: String {
-			self.rawValue
+/// Координатор приложения.
+final class AppCoordinator {
+	/// Перечисление сцен.
+	enum ViewScene: Identifiable {
+		var id: UUID {
+			return UUID()
 		}
 		case themeView
 		case cleanView
 	}
 
-	typealias CoordinatorSceneState = ViewScene
-	@Published var path: [CoordinatorSceneState] = [.cleanView]
-	@Published var sheet: CoordinatorSceneState?
-	@Published var fullScreen: CoordinatorSceneState?
+	@Published var path: [ViewScene] = [.cleanView]
+	@Published var sheet: ViewScene?
+	@Published var fullScreen: ViewScene?
+	weak var finishDelegate: CordinatorFinishDelegate?
+	weak var parentCoordinator: (any ICoordinator)?
+	var childCoordinators: [any ICoordinator] = []
+
+	func start() {
+		showCleanCoordinator()
+	}
 
 	@ViewBuilder
-	func build(_ view: CoordinatorSceneState) -> some View {
+	func build(_ view: ViewScene) -> some View {
 		switch view {
 		case .themeView:
 			ThemeViewView().assembly(
@@ -83,7 +54,30 @@ final class AppCoordinator: ICoordinator {
 	}
 }
 
+// MARK: - IAppCoordinator
+
+extension AppCoordinator: IAppCoordinator {
+	func showCleanCoordinator() {
+		let cleanCoordinator = AppCoordinator()
+		cleanCoordinator.parentCoordinator = self
+		cleanCoordinator.finishDelegate = self
+		addChildCoordinator(cleanCoordinator)
+		cleanCoordinator.start()
+	}
+}
+
+// MARK: - CordinatorFinishDelegate
+
+extension AppCoordinator: CordinatorFinishDelegate {
+	func didFinish(coordinator: ICoordinator) {
+		if let index = childCoordinators.firstIndex(where: { $0 === coordinator }) {
+			childCoordinators.remove(at: index)
+		}
+	}
+}
+
 // MARK: - AppCoordinatorView
+/// Отображение координатора приложения. 
 struct AppCoordinatorView: View {
 	@StateObject var coordinator: AppCoordinator
 
@@ -98,57 +92,6 @@ struct AppCoordinatorView: View {
 						coordinator.build(fullscreen)
 					}
 			}
-		}
-	}
-}
-
-
-// MARK: - Support for NStack.
-struct NStack<Screen, ScreenView: View>: View {
-	@Binding var path: [Screen]
-	@ViewBuilder var buildView: (Screen) -> ScreenView
-
-	var body: some View {
-		path
-			.enumerated()
-			.reversed()
-			.reduce(NavigationNode<Screen, ScreenView>.end) { pushedNode, new in
-				let (index, screen) = new
-				return NavigationNode<Screen, ScreenView>.view(
-					buildView(screen),
-					pushing: pushedNode,
-					stack: $path,
-					index: index
-				)
-			}
-	}
-}
-
-indirect enum NavigationNode<Screen, ScreenView: View>: View {
-	case view(ScreenView, pushing: NavigationNode<Screen, ScreenView>, stack: Binding<[Screen]>, index: Int)
-	case end
-
-	var body: some View {
-		if case .view(let view, let pushedNode, let stack, let index) = self {
-			view.background(
-				NavigationLink(
-					destination: pushedNode,
-					isActive: Binding(
-						get: {
-							if case .end = pushedNode {
-								return false
-							}
-							return stack.wrappedValue.count > index + 1
-						},
-						set: { isPushed in
-							guard !isPushed else { return }
-							stack.wrappedValue = Array(stack.wrappedValue.prefix(index + 1))
-						}),
-					label: EmptyView.init
-				).hidden()
-			)
-		} else {
-			EmptyView()
 		}
 	}
 }
