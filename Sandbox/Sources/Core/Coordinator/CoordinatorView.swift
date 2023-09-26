@@ -13,18 +13,6 @@ struct CoordinatorView<Coordinator: ICoordinator>: View {
 	@StateObject var coordinator: Coordinator
 
 	var body: some View {
-		strategyNavigationStack()
-			.onAppear {
-				coordinator.start()
-			}
-	}
-
-	// TODO: При переходе на минимальную версию 16 удалить стратегию.
-
-	/// Стратегия для решения проблем навигации на разных версиях.
-	/// - Returns: Стек навигации.
-	@ViewBuilder
-	private func strategyNavigationStack() -> some View {
 		if #available(iOS 16.0, *) {
 			NavigationStack {
 				getNStack()
@@ -36,6 +24,8 @@ struct CoordinatorView<Coordinator: ICoordinator>: View {
 			.navigationViewStyle(.stack)
 		}
 	}
+
+	// TODO: При переходе на минимальную версию 16 удалить стратегию.
 
 	/// Функция для решения DRY.
 	/// Пока минимальная версия не 16 iOS - workaround

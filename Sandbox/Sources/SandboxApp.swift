@@ -19,18 +19,24 @@ struct SandboxApp: App {
 		WindowGroup {
 			CoordinatorView(coordinator: appCoordinator)
 				.onChange(of: scenePhase) { newPhase in
-					if newPhase == .active, !check() {
-						appCoordinator.showAuth()
-					}
+					// Приложение стало активным.
+					guard newPhase == .active else { return }
+					check()
 				}
 		}
 	}
+
 	// TODO: Вынести в чекер.
-	private func check() -> Bool {
+	private func check() {
 		// Auth
-		guard false else { return false }
+		guard false else {
+			appCoordinator.showAuth()
+			return
+		}
 		// Network
-		guard true else { return false }
-		return true
+		guard true else { return }
+		// Координатор еще не стартовал.
+		guard appCoordinator.path.isEmpty else { return }
+		appCoordinator.start()
 	}
 }

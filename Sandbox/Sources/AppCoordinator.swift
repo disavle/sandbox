@@ -41,22 +41,32 @@ final class AppCoordinator: ICoordinator {
 	}
 
 	func start() {
+		childCoordinators.removeAll()
+
 		let themeCoordinator = ThemeCoordinator()
 		themeCoordinator.finishDelegate = self
 		themeCoordinator.parentCoordinator = self
+		themeCoordinator.start()
 		addChildCoordinator(themeCoordinator)
+
 		let cleanCoordinator = CleanCoordinator()
 		cleanCoordinator.finishDelegate = self
 		cleanCoordinator.parentCoordinator = self
+		cleanCoordinator.start()
 		addChildCoordinator(cleanCoordinator)
+
 		path = [.mainTab(themeCoordinator, cleanCoordinator)]
 	}
 
 	func showAuth() {
+		childCoordinators.removeAll()
+
 		let authCoordinator = AuthCoordinator()
 		authCoordinator.finishDelegate = self
 		authCoordinator.parentCoordinator = self
+		authCoordinator.start()
 		addChildCoordinator(authCoordinator)
+
 		path = [.auth(authCoordinator)]
 	}
 }
