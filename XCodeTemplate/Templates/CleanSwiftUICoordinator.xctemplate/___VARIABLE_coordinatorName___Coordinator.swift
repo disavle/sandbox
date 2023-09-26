@@ -15,6 +15,7 @@ final class ___VARIABLE_coordinatorName___Coordinator: ICoordinator {
 	@Published var fullScreen: ViewScene?
 	@Published var childCoordinators: [any ICoordinatorCycle] = []
 	weak var parentCoordinator: (any ICoordinatorCycle)?
+	weak var finishDelegate: CordinatorFinishDelegate?
 	
 	/// Перечисление сцен.
 	enum ViewScene: Identifiable {
