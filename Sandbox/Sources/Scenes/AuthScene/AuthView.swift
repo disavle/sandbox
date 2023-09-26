@@ -27,17 +27,14 @@ struct AuthView: View {
 
 	// MARK: View.
 	var body: some View {
-		ZStack {
-			Color(UIColor.white).ignoresSafeArea()
-			VStack {
-				Text("Log in!")
-					.modifier(TitleStyle())
+		VStack {
+			Text("Log in!")
+				.modifier(TitleStyle())
 
-				Button("Tap") {
-					interactor.showRecurse()
-				}
-				.buttonStyle(MyButtonStyle())
+			Button("Tap") {
+				interactor.showRecurse()
 			}
+			.buttonStyle(MyButtonStyle())
 		}
 		.onAppear {
 			interactor.start()
@@ -76,24 +73,21 @@ struct AuthView_Previews: PreviewProvider {
 
 struct TitleStyle: ViewModifier {
 	let titleFontBold = Font.title.weight(.bold)
-	let navyBlue = Color(red: 0, green: 0, blue: 0.5)
 
 	func body(content: Content) -> some View {
 		content
 			.font(titleFontBold)
-			.foregroundColor(navyBlue)
+			.foregroundColor(Color(UIColor.label))
 			.padding()
 	}
 }
 
 struct MyButtonStyle: ButtonStyle {
-	let navyBlue = Color(red: 0, green: 0, blue: 0.5)
-
 	func makeBody(configuration: Configuration) -> some View {
 		configuration.label
 			.padding()
-			.background(navyBlue)
-			.foregroundColor(.white)
+			.background(Color(UIColor.label))
+			.foregroundColor(Color(UIColor.systemBackground))
 			.clipShape(Capsule())
 	}
 }

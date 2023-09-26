@@ -14,6 +14,7 @@ struct CoordinatorView<Coordinator: ICoordinator>: View {
 
 	var body: some View {
 		strategyNavigationStack()
+			.ignoresSafeArea()
 			.onAppear {
 				coordinator.start()
 			}
