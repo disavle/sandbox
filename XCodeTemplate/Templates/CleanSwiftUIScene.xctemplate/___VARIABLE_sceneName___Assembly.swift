@@ -14,7 +14,7 @@ extension ___VARIABLE_sceneName___View {
 	///   - inputModel: Входная модель данных.
 	///   - outputModel: Выходная модель данных.
 	/// - Returns: ___VARIABLE_sceneName___View.
-	func assembly(inputModel: ___VARIABLE_sceneName___Model.InputModel, outputModel: ___VARIABLE_sceneName___Model.OutputModel) -> some View {
+	func assembly(inputModel: ___VARIABLE_sceneName___Model.InputModel, outputModel: ___VARIABLE_sceneName___Model.OutputModel) -> Self {
 		var view = self
 		
 		let presenter: I___VARIABLE_sceneName___Presenter = ___VARIABLE_sceneName___Presenter(view: view)

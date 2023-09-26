@@ -14,7 +14,7 @@ extension ThemeViewView {
 	///   - inputModel: Входная модель данных.
 	///   - outputModel: Выходная модель данных.
 	/// - Returns: ThemeViewView.
-	func assembly(inputModel: ThemeViewModel.InputModel, outputModel: ThemeViewModel.OutputModel) -> some View {
+	func assembly(inputModel: ThemeViewModel.InputModel, outputModel: ThemeViewModel.OutputModel) -> Self {
 		var view = self
 
 		let presenter: IThemeViewPresenter = ThemeViewPresenter(view: view)

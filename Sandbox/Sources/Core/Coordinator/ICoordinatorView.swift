@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-/// Протокол для декларативного коорданатора.
+/// Протокол для декларативного коорданатора (Через View).
 protocol ICoordinatorView: ObservableObject {
 	/// Для перечисления экранов сцены.
 	associatedtype CoordinatorSceneState: Identifiable

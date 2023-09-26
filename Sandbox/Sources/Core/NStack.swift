@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-/// Структура аналок NavigationStack iOS16.
+/// Структура аналог NavigationStack iOS16.
 struct NStack<Screen, ScreenView: View>: View {
 	@Binding var path: [Screen]
 	@ViewBuilder var buildView: (Screen) -> ScreenView

@@ -8,78 +8,62 @@
 
 import SwiftUI
 
-/// Протокол координатор приложения.
-protocol IAppCoordinator: ICoordinator, ICoordinatorView {
-	func showCleanCoordinator()
+protocol IAppCoordinator: ICoordinator {
+	/// Показать окно авторизации.
+	func showAuth()
 }
 
-// https://www.youtube.com/watch?v=0fT_xyBDl0w
-
 /// Координатор приложения.
-final class AppCoordinator {
+final class AppCoordinator: IAppCoordinator {
+	@Published var path: [ViewScene] = []
+	@Published var sheet: ViewScene?
+	@Published var fullScreen: ViewScene?
+	@Published var childCoordinators: [any ICoordinatorCycle] = []
+	weak var parentCoordinator: (any ICoordinatorCycle)?
+
 	/// Перечисление сцен.
 	enum ViewScene: Identifiable {
 		var id: UUID { return UUID() }
-		case themeView
-		case cleanView
+		case mainTab
+		case auth
 	}
 
-	@Published var path: [ViewScene] = [.cleanView]
-	@Published var sheet: ViewScene?
-	@Published var fullScreen: ViewScene?
-	weak var finishDelegate: CordinatorFinishDelegate?
-	weak var parentCoordinator: (any ICoordinator)?
-	var childCoordinators: [any ICoordinator] = []
-
-	func start() {
-		showCleanCoordinator()
-	}
-
+	/// Билдер для экрана.
+	/// - Parameter view: Экран ViewScene.
+	/// - Returns: Экран для отображения.
 	@ViewBuilder
 	func build(_ view: ViewScene) -> some View {
 		switch view {
-		case .themeView:
-			ThemeViewView().assembly(
-				inputModel: ThemeViewModel.InputModel(title: "Fuck SwiftUI!"),
-				outputModel: ThemeViewModel.OutputModel()
-			)
-		case .cleanView:
-			CleanView().assembly(
-				inputModel: CleanModel.InputModel(name: "Дима", age: 21),
-				outputModel: CleanModel.OutputModel {
-					self.push(.themeView)
-				}
+		case .auth:
+			EmptyView()
+		case .mainTab:
+			MainTab(
+				firstTab: ThemeViewView().assembly(
+					inputModel: ThemeViewModel.InputModel(title: "Fuck SwiftUI!"),
+					outputModel: ThemeViewModel.OutputModel()
+				),
+				secondTab: CleanView().assembly(
+					inputModel: CleanModel.InputModel(name: "Дима", age: 21),
+					outputModel: CleanModel.OutputModel {
+					}
+				)
 			)
 		}
 	}
-}
 
-// MARK: - IAppCoordinator
-
-extension AppCoordinator: IAppCoordinator {
-	func showCleanCoordinator() {
-		let cleanCoordinator = AppCoordinator()
-		cleanCoordinator.parentCoordinator = self
-		cleanCoordinator.finishDelegate = self
-		addChildCoordinator(cleanCoordinator)
-		cleanCoordinator.start()
+	func start() {
+		path = [.mainTab]
 	}
-}
 
-// MARK: - CordinatorFinishDelegate
-
-extension AppCoordinator: CordinatorFinishDelegate {
-	func didFinish(coordinator: ICoordinator) {
-		if let index = childCoordinators.firstIndex(where: { $0 === coordinator }) {
-			childCoordinators.remove(at: index)
-		}
+	func showAuth() {
+		path = [.auth]
 	}
 }
 
 // MARK: - AppCoordinatorView
 /// Отображение координатора приложения. 
-struct AppCoordinatorView: View {
-	@StateObject var coordinator: AppCoordinator
+struct AppCoordinatorView<Coordinator: IAppCoordinator>: View {
+	@StateObject var coordinator: Coordinator
 
 	var body: some View {
 		NavigationView {
@@ -92,6 +76,9 @@ struct AppCoordinatorView: View {
 						coordinator.build(fullscreen)
 					}
 			}
+		}
+		.onAppear {
+			coordinator.start()
 		}
 	}
 }

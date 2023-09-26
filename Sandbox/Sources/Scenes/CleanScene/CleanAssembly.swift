@@ -14,7 +14,7 @@ extension CleanView {
 	///   - inputModel: Входная модель данных.
 	///   - outputModel: Выходная модель данных.
 	/// - Returns: CleanView.
-	func assembly(inputModel: CleanModel.InputModel, outputModel: CleanModel.OutputModel) -> some View {
+	func assembly(inputModel: CleanModel.InputModel, outputModel: CleanModel.OutputModel) -> Self {
 		var view = self
 
 		let presenter: ICleanPresenter = CleanPresenter(view: view)
