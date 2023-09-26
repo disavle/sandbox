@@ -7,6 +7,6 @@
 //
 
 /// Протокол делегата завершения сценария.
-protocol CordinatorFinishDelegate: AnyObject {
+protocol CoordinatorFinishDelegate: AnyObject {
 	func didFinish(coordinator: any ICoordinatorCycle)
 }

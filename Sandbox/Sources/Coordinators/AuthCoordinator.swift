@@ -15,7 +15,7 @@ final class AuthCoordinator: ICoordinator {
 	@Published var fullScreen: ViewScene?
 	@Published var childCoordinators: [any ICoordinatorCycle] = []
 	weak var parentCoordinator: (any ICoordinatorCycle)?
-	weak var finishDelegate: CordinatorFinishDelegate?
+	weak var finishDelegate: CoordinatorFinishDelegate?
 
 	/// Перечисление сцен.
 	enum ViewScene: Identifiable {
