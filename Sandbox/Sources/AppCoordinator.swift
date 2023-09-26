@@ -66,7 +66,9 @@ extension AppCoordinator: CordinatorFinishDelegate {
 	func didFinish(coordinator: ICoordinatorCycle) {
 		if let index = childCoordinators.firstIndex(where: { $0 === coordinator }) {
 			childCoordinators.remove(at: index)
-			start()
+			withAnimation(.easeInOut) {
+				start()
+			}
 		}
 	}
 }
