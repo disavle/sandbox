@@ -10,8 +10,8 @@ import SwiftUI
 
 /// Таббар приложения.
 struct MainTab: View {
-	var firstTab: ThemeViewView
-	var secondTab: CleanView
+	var firstTab: CoordinatorView<ThemeCoordinator>
+	var secondTab: CoordinatorView<CleanCoordinator>
 
 	var body: some View {
 		TabView {

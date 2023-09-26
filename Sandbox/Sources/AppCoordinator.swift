@@ -15,12 +15,12 @@ final class AppCoordinator: ICoordinator {
 	@Published var fullScreen: ViewScene?
 	@Published var childCoordinators: [any ICoordinatorCycle] = []
 	weak var parentCoordinator: (any ICoordinatorCycle)?
-	weak var finishDelegate: CordinatorFinishDelegate?
+	weak var finishDelegate: CoordinatorFinishDelegate?
 
 	/// Перечисление сцен.
 	enum ViewScene: Identifiable {
 		var id: UUID { return UUID() }
-		case mainTab
+		case mainTab(ThemeCoordinator, CleanCoordinator)
 		case auth(AuthCoordinator)
 	}
 
@@ -30,25 +30,26 @@ final class AppCoordinator: ICoordinator {
 	@ViewBuilder
 	func build(_ view: ViewScene) -> some View {
 		switch view {
-		case .auth(let coordinator):
+		case let .auth(coordinator):
 			CoordinatorView(coordinator: coordinator)
-		case .mainTab:
+		case let .mainTab(themeCoordinator, cleanCoordinator):
 			MainTab(
-				firstTab: ThemeViewView().assembly(
-					inputModel: ThemeViewModel.InputModel(title: "Fuck SwiftUI!"),
-					outputModel: ThemeViewModel.OutputModel()
-				),
-				secondTab: CleanView().assembly(
-					inputModel: CleanModel.InputModel(name: "Дима", age: 21),
-					outputModel: CleanModel.OutputModel {
-					}
-				)
+				firstTab: CoordinatorView(coordinator: themeCoordinator),
+				secondTab: CoordinatorView(coordinator: cleanCoordinator)
 			)
 		}
 	}
 
 	func start() {
-		path = [.mainTab]
+		let themeCoordinator = ThemeCoordinator()
+		themeCoordinator.finishDelegate = self
+		themeCoordinator.parentCoordinator = self
+		addChildCoordinator(themeCoordinator)
+		let cleanCoordinator = CleanCoordinator()
+		cleanCoordinator.finishDelegate = self
+		cleanCoordinator.parentCoordinator = self
+		addChildCoordinator(cleanCoordinator)
+		path = [.mainTab(themeCoordinator, cleanCoordinator)]
 	}
 
 	func showAuth() {
@@ -60,15 +61,13 @@ final class AppCoordinator: ICoordinator {
 	}
 }
 
-// MARK: - CordinatorFinishDelegate
+// MARK: - CoordinatorFinishDelegate
 
-extension AppCoordinator: CordinatorFinishDelegate {
+extension AppCoordinator: CoordinatorFinishDelegate {
 	func didFinish(coordinator: ICoordinatorCycle) {
-		if let index = childCoordinators.firstIndex(where: { $0 === coordinator }) {
-			childCoordinators.remove(at: index)
-			withAnimation(.easeInOut) {
-				start()
-			}
+		removeChildCoordinator(coordinator)
+		withAnimation(.easeInOut) {
+			start()
 		}
 	}
 }
