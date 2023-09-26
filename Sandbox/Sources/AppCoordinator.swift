@@ -35,7 +35,7 @@ final class AppCoordinator: IAppCoordinator {
 	func build(_ view: ViewScene) -> some View {
 		switch view {
 		case .auth:
-			EmptyView()
+			AuthView().assembly(inputModel: .init(), outputModel: .init())
 		case .mainTab:
 			MainTab(
 				firstTab: ThemeViewView().assembly(
