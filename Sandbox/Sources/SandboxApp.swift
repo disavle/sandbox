@@ -13,7 +13,7 @@ struct SandboxApp: App {
 	@Environment(\.scenePhase)
 	private var scenePhase
 	/// Координатор приложения.
-	private let appCoordinator: some IAppCoordinator = AppCoordinator()
+	private let appCoordinator = AppCoordinator()
 
 	var body: some Scene {
 		WindowGroup {

@@ -12,6 +12,7 @@ protocol IAuthInteractor {
 	/// Передать для подготовки отображения.
 	/// - Parameter request: Модель данных для интерактора.
 	func start()
+	func showRecurse()
 }
 
 // MARK: - AuthInteractor.
@@ -40,5 +41,8 @@ extension AuthInteractor: IAuthInteractor {
 	func start() {
 		let response: AuthModel.Main.Response = .init()
 		presenter.present(response)
+	}
+	func showRecurse() {
+		outputModel.showRecurse()
 	}
 }

@@ -34,6 +34,7 @@ struct AuthView: View {
 					.modifier(TitleStyle())
 
 				Button("Tap") {
+					interactor.showRecurse()
 				}
 				.buttonStyle(MyButtonStyle())
 			}

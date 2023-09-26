@@ -12,7 +12,9 @@ enum AuthModel {
 	struct InputModel { }
 
 	/// Выходная модель сцены Сцена авторизации.
-	struct OutputModel { }
+	struct OutputModel {
+		let showRecurse: () -> Void
+	}
 
 	/// Модели данных VIP цикла.
 	enum Main {
