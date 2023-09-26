@@ -17,7 +17,7 @@ struct SandboxApp: App {
 
 	var body: some Scene {
 		WindowGroup {
-			AppCoordinatorView(coordinator: appCoordinator)
+			CoordinatorView(coordinator: appCoordinator)
 				.onChange(of: scenePhase) { newPhase in
 					if newPhase == .active, !check() {
 						appCoordinator.showAuth()
@@ -28,7 +28,7 @@ struct SandboxApp: App {
 	// TODO: Вынести в чекер.
 	private func check() -> Bool {
 		// Auth
-		guard true else { return false }
+		guard false else { return false }
 		// Network
 		guard true else { return false }
 		return true

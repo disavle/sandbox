@@ -43,26 +43,3 @@ final class AuthCoordinator: ICoordinator {
 		push(.start)
 	}
 }
-
-// MARK: - AuthCoordinatorView
-/// Отображение Координатор авторизации.
-struct AuthCoordinatorView: View {
-	@StateObject var coordinator: AuthCoordinator
-
-	var body: some View {
-		NavigationView {
-			NStack(path: $coordinator.path) { scene in
-				coordinator.build(scene)
-					.sheet(item: $coordinator.sheet) { sheet in
-						coordinator.build(sheet)
-					}
-					.fullScreenCover(item: $coordinator.fullScreen) { fullscreen in
-						coordinator.build(fullscreen)
-					}
-			}
-		}
-		.onAppear {
-			coordinator.start()
-		}
-	}
-}

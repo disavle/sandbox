@@ -18,6 +18,8 @@ protocol ICoordinatorCycle: AnyObject {
 	/// Добавить дочерний координатор.
 	/// - Parameter coordinator: Дочерний координатор.
 	func addChildCoordinator(_ coordinator: ICoordinatorCycle)
+	/// Начало сценария.
+	func start()
 }
 
 // MARK: - Реализация ICoordinator

@@ -30,7 +30,7 @@ final class AppCoordinator: ICoordinator {
 	func build(_ view: ViewScene) -> some View {
 		switch view {
 		case .auth(let coordinator):
-			AuthCoordinatorView(coordinator: coordinator)
+			CoordinatorView(coordinator: coordinator)
 		case .mainTab:
 			MainTab(
 				firstTab: ThemeViewView().assembly(
@@ -55,28 +55,5 @@ final class AppCoordinator: ICoordinator {
 		authCoordinator.parentCoordinator = self
 		addChildCoordinator(authCoordinator)
 		path = [.auth(authCoordinator)]
-	}
-}
-
-// MARK: - AppCoordinatorView
-/// Отображение координатора приложения. 
-struct AppCoordinatorView: View {
-	@StateObject var coordinator: AppCoordinator
-
-	var body: some View {
-		NavigationView {
-			NStack(path: $coordinator.path) { scene in
-				coordinator.build(scene)
-					.sheet(item: $coordinator.sheet) { sheet in
-						coordinator.build(sheet)
-					}
-					.fullScreenCover(item: $coordinator.fullScreen) { fullscreen in
-						coordinator.build(fullscreen)
-					}
-			}
-		}
-		.onAppear {
-			coordinator.start()
-		}
 	}
 }

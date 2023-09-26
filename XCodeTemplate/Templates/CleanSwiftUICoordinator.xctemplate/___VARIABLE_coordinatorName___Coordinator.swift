@@ -47,26 +47,3 @@ final class ___VARIABLE_coordinatorName___Coordinator: ICoordinator {
 	}
 }
 
-// MARK: - ___VARIABLE_coordinatorName___CoordinatorView
-/// Отображение ___VARIABLE_documentationCoordinatorName___.
-struct ___VARIABLE_coordinatorName___CoordinatorView<Coordinator: ___VARIABLE_coordinatorName___Coordinator>: View {
-	@StateObject var coordinator: Coordinator
-	
-	var body: some View {
-		NavigationView {
-			NStack(path: $coordinator.path) { scene in
-				coordinator.build(scene)
-					.sheet(item: $coordinator.sheet) { sheet in
-						coordinator.build(sheet)
-					}
-					.fullScreenCover(item: $coordinator.fullScreen) { fullscreen in
-						coordinator.build(fullscreen)
-					}
-			}
-		}
-		.onAppear {
-			coordinator.start()
-		}
-	}
-}
-
