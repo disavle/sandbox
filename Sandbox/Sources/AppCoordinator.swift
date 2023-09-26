@@ -15,6 +15,7 @@ final class AppCoordinator: ICoordinator {
 	@Published var fullScreen: ViewScene?
 	@Published var childCoordinators: [any ICoordinatorCycle] = []
 	weak var parentCoordinator: (any ICoordinatorCycle)?
+	weak var finishDelegate: CordinatorFinishDelegate?
 
 	/// Перечисление сцен.
 	enum ViewScene: Identifiable {
@@ -52,8 +53,20 @@ final class AppCoordinator: ICoordinator {
 
 	func showAuth() {
 		let authCoordinator = AuthCoordinator()
+		authCoordinator.finishDelegate = self
 		authCoordinator.parentCoordinator = self
 		addChildCoordinator(authCoordinator)
 		path = [.auth(authCoordinator)]
+	}
+}
+
+// MARK: - CordinatorFinishDelegate
+
+extension AppCoordinator: CordinatorFinishDelegate {
+	func didFinish(coordinator: ICoordinatorCycle) {
+		if let index = childCoordinators.firstIndex(where: { $0 === coordinator }) {
+			childCoordinators.remove(at: index)
+			start()
+		}
 	}
 }

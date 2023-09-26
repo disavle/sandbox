@@ -15,6 +15,7 @@ final class AuthCoordinator: ICoordinator {
 	@Published var fullScreen: ViewScene?
 	@Published var childCoordinators: [any ICoordinatorCycle] = []
 	weak var parentCoordinator: (any ICoordinatorCycle)?
+	weak var finishDelegate: CordinatorFinishDelegate?
 
 	/// Перечисление сцен.
 	enum ViewScene: Identifiable {
@@ -29,8 +30,8 @@ final class AuthCoordinator: ICoordinator {
 	func build(_ view: ViewScene) -> some View {
 		switch view {
 		case .start:
-			AuthView().assembly(inputModel: .init(), outputModel: .init(showRecurse: {
-				self.showRecurse()
+			AuthView().assembly(inputModel: .init(), outputModel: .init(showRecurse: { [weak self] in
+				self?.showRecurse()
 			}))
 		}
 	}
@@ -40,6 +41,6 @@ final class AuthCoordinator: ICoordinator {
 	}
 
 	func showRecurse() {
-		push(.start)
+		finish()
 	}
 }
