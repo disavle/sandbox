@@ -31,7 +31,7 @@ extension CleanPresenter: ICleanPresenter {
 	/// Отобразить на View.
 	/// - Parameter response: Модель данных для презентера.
 	func present(_ response: CleanModel.Main.Response) {
-		let viewModel: CleanModel.Main.Props = .init(name: response.name, age: String(response.age))
-		view.render(viewModel)
+		let props: CleanModel.Main.Props = .init(name: response.name, age: String(response.age))
+		view.render(props)
 	}
 }

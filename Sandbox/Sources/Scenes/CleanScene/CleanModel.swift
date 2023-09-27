@@ -34,8 +34,6 @@ enum CleanModel {
 		struct Props {
 			let name: String
 			let age: String
-
-			static let initial = Props(name: "", age: "")
 		}
 	}
 }

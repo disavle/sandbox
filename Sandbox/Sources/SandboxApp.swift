@@ -9,10 +9,34 @@ import SwiftUI
 
 @main
 struct SandboxApp: App {
+	/// Жизненный цикл приложения.
+	@Environment(\.scenePhase)
+	private var scenePhase
+	/// Координатор приложения.
+	private let appCoordinator = AppCoordinator()
+
 	var body: some Scene {
 		WindowGroup {
-			// CleanSwift.
-			AppCoordinatorView(coordinator: AppCoordinator())
+			CoordinatorView(coordinator: appCoordinator)
 		}
+		.onChange(of: scenePhase) { newPhase in
+			// Приложение стало активным.
+			guard newPhase == .active else { return }
+			check()
+		}
+	}
+
+	// TODO: Вынести в чекер.
+	private func check() {
+		// Auth
+		guard false else {
+			appCoordinator.showAuth()
+			return
+		}
+		// Network
+		guard true else { return }
+		// Координатор еще не стартовал.
+		guard appCoordinator.path.isEmpty else { return }
+		appCoordinator.start()
 	}
 }
