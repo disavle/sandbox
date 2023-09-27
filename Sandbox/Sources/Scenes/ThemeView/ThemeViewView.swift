@@ -41,6 +41,7 @@ struct ThemeViewView: View {
 			}
 			.clipShape(Capsule())
 		}
+		.modifier(NavigationBarHidden())
 		.onAppear {
 			interactor.start(ThemeViewModel.Main.Request())
 		}

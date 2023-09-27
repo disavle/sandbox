@@ -9,6 +9,7 @@
 import SwiftUI
 
 /// Структура аналог NavigationStack iOS16.
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 struct NStack<Screen, ScreenView: View>: View {
 	@Binding var path: [Screen]
 	@ViewBuilder var buildView: (Screen) -> ScreenView
@@ -30,6 +31,7 @@ struct NStack<Screen, ScreenView: View>: View {
 }
 
 /// Единица стека навигации.
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 indirect enum NavigationNode<Screen, ScreenView: View>: View {
 	case view(ScreenView, pushing: NavigationNode<Screen, ScreenView>, stack: Binding<[Screen]>, index: Int)
 	case end
