@@ -21,7 +21,7 @@ protocol I___FILEBASENAMEASIDENTIFIER___ {
 struct ___FILEBASENAMEASIDENTIFIER___: View {
 	// MARK: Dependencies.
 	/// Модель данных для отображения.
-	@ObservedObject private var viewModel = ___FILEBASENAMEASIDENTIFIER___Model()
+	@ObservedObject var props: ___FILEBASENAMEASIDENTIFIER___.Props = .initial
 	/// Интерактор.
 	var interactor: I___VARIABLE_sceneName___Interactor!
 	
@@ -40,22 +40,26 @@ extension ___FILEBASENAMEASIDENTIFIER___: I___FILEBASENAMEASIDENTIFIER___ {
 	/// Рендер отображения.
 	/// - Parameter props: Модель данных для отображения.
 	func render(_ props: ___VARIABLE_sceneName___Model.Main.Props) {
-		viewModel.props = props
+		self.props.example = props.example
 	}
 }
 
-// MARK: - ViewModel для биндинга.
-extension ___FILEBASENAMEASIDENTIFIER___ {
-	/// Модель для обновления UI.
-	final class ___FILEBASENAMEASIDENTIFIER___Model: ObservableObject {
-		@Published var props: ___VARIABLE_sceneName___Model.Main.Props = .initial
+// MARK: - IProps.
+extension ___FILEBASENAMEASIDENTIFIER___: IProps {
+	@MainActor
+	final class Props: ObservableObject {
+		@Published var example: String = ""
+		
+		static let initial = Props()
 	}
 }
 
 // MARK: - Preview.
+#if DEBUG
 /// Вспомогательная функция для превью верстки.
 struct ___FILEBASENAMEASIDENTIFIER____Previews: PreviewProvider {
 	static var previews: some View {
 		___FILEBASENAMEASIDENTIFIER___()
 	}
 }
+#endif

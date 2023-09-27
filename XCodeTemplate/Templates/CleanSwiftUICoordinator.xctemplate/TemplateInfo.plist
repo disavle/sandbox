@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SupportsSwiftPackage</key>
+	<true/>
+	<key>Kind</key>
+	<string>Xcode.IDEKit.TextSubstitutionFileTemplateKind</string>
+	<key>Platforms</key>
+	<array>
+		<string>com.apple.platform.iphoneos</string>
+	</array>
+	<key>Options</key>
+	<array>
+		<dict>
+			<key>Identifier</key>
+			<string>coordinatorName</string>
+			<key>Required</key>
+			<true/>
+			<key>Name</key>
+			<string>Название координатора в коде:</string>
+			<key>Description</key>
+			<string>Название координатора в коде.</string>
+			<key>Type</key>
+			<string>text</string>
+			<key>Default</key>
+			<string>###</string>
+		</dict>
+		<dict>
+			<key>Identifier</key>
+			<string>documentationCoordinatorName</string>
+			<key>Required</key>
+			<true/>
+			<key>Name</key>
+			<string>Название координатора для документации:</string>
+			<key>Description</key>
+			<string>Название координатора для использования в документации методов и свойств.</string>
+			<key>Type</key>
+			<string>text</string>
+			<key>Default</key>
+			<string>###</string>
+		</dict>
+	</array>
+</dict>
+</plist>

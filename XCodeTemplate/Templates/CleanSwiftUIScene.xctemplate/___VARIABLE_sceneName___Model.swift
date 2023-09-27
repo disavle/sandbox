@@ -23,8 +23,8 @@ enum ___FILEBASENAMEASIDENTIFIER___ {
 		struct Response { }
 		
 		/// Данные получаемые из Presenter.
-		struct Props {			
-			static let initial = Props()
+		struct Props {
+			let example: String
 		}
 	}
 }
