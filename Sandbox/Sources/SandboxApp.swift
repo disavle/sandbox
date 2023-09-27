@@ -14,18 +14,18 @@ struct SandboxApp: App {
 	private var scenePhase
 	/// Координатор приложения.
 	private let appCoordinator = AppCoordinator()
-
+	
 	var body: some Scene {
 		WindowGroup {
 			CoordinatorView(coordinator: appCoordinator)
-				.onChange(of: scenePhase) { newPhase in
-					// Приложение стало активным.
-					guard newPhase == .active else { return }
-					check()
-				}
+		}
+		.onChange(of: scenePhase) { newPhase in
+			// Приложение стало активным.
+			guard newPhase == .active else { return }
+			check()
 		}
 	}
-
+	
 	// TODO: Вынести в чекер.
 	private func check() {
 		// Auth

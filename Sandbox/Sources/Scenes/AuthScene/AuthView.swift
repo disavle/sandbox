@@ -36,6 +36,7 @@ struct AuthView: View {
 			}
 			.buttonStyle(MyButtonStyle())
 		}
+		.navigationTitle("Log in")
 		.onAppear {
 			interactor.start()
 		}
