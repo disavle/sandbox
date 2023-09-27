@@ -14,7 +14,7 @@ struct SandboxApp: App {
 	private var scenePhase
 	/// Координатор приложения.
 	private let appCoordinator = AppCoordinator()
-	
+
 	var body: some Scene {
 		WindowGroup {
 			CoordinatorView(coordinator: appCoordinator)
@@ -25,7 +25,7 @@ struct SandboxApp: App {
 			check()
 		}
 	}
-	
+
 	// TODO: Вынести в чекер.
 	private func check() {
 		// Auth
