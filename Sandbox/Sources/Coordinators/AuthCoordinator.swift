@@ -28,11 +28,13 @@ final class AuthCoordinator: ICoordinator {
 	/// - Returns: Экран для отображения.
 	@ViewBuilder
 	func build(_ view: ViewScene) -> some View {
-		switch view {
-		case .start:
-			AuthView().assembly(inputModel: .init(), outputModel: .init(showRecurse: { [weak self] in
-				self?.showRecurse()
-			}))
+		NavigationStackView {
+			switch view {
+			case .start:
+				AuthView().assembly(inputModel: .init(), outputModel: .init(showRecurse: { [weak self] in
+					self?.showRecurse()
+				}))
+			}
 		}
 	}
 

@@ -28,12 +28,14 @@ final class ThemeCoordinator: ICoordinator {
 	/// - Returns: Экран для отображения.
 	@ViewBuilder
 	func build(_ view: ViewScene) -> some View {
-		switch view {
-		case .start:
-			ThemeViewView().assembly(
-				inputModel: ThemeViewModel.InputModel(title: "Fuck SwiftUI!"),
-				outputModel: ThemeViewModel.OutputModel()
-			)
+		NavigationStackView {
+			switch view {
+			case .start:
+				ThemeViewView().assembly(
+					inputModel: ThemeViewModel.InputModel(title: "Fuck SwiftUI!"),
+					outputModel: ThemeViewModel.OutputModel()
+				)
+			}
 		}
 	}
 

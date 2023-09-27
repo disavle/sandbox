@@ -28,13 +28,15 @@ final class CleanCoordinator: ICoordinator {
 	/// - Returns: Экран для отображения.
 	@ViewBuilder
 	func build(_ view: ViewScene) -> some View {
-		switch view {
-		case .start:
-			CleanView().assembly(
-				inputModel: CleanModel.InputModel(name: "Дима", age: 21),
-				outputModel: CleanModel.OutputModel {
-				}
-			)
+		NavigationStackView {
+			switch view {
+			case .start:
+				CleanView().assembly(
+					inputModel: CleanModel.InputModel(name: "Дима", age: 21),
+					outputModel: CleanModel.OutputModel {
+					}
+				)
+			}
 		}
 	}
 

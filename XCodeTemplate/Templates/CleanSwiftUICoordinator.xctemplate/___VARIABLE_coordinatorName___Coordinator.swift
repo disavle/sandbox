@@ -29,13 +29,15 @@ final class ___VARIABLE_coordinatorName___Coordinator: ICoordinator {
 	/// - Returns: Экран для отображения.
 	@ViewBuilder
 	func build(_ view: ViewScene) -> some View {
-		switch view {
-		case .start:
-			// Вызвать другой координатор или начальную сцену.
-			EmptyView()
-		case .show:
-			// Вызвать другой координатор или сцену.
-			EmptyView()
+		NavigationStackView {
+			switch view {
+			case .start:
+				// Вызвать другой координатор или начальную сцену.
+				EmptyView()
+			case .show:
+				// Вызвать другой координатор или сцену.
+				EmptyView()
+			}
 		}
 	}
 	
