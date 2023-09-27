@@ -25,9 +25,7 @@ let target = Target(
 	sources: ["Sandbox/Sources/**"],
 	resources: ["Sandbox/Resources/**"],
 	scripts: scripts,
-	dependencies: [
-		.external(name: "SnapshotTesting")
-	],
+	dependencies: [],
 	settings: .settings(
 		base: baseSettings,
 		configurations: [.debug(name: .debug), .release(name: .release)]
@@ -43,6 +41,7 @@ let testTarget = Target(
 	sources: "SandboxTests/Sources/**",
 	dependencies: [
 		.target(name: "Sandbox"),
+		.external(name: "SnapshotTesting")
 	]
 )
 
