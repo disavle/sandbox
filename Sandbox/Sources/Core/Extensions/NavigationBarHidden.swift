@@ -13,7 +13,7 @@ struct NavigationBarHidden: ViewModifier {
 	func body(content: Content) -> some View {
 		if #available(iOS 16.0, *) {
 			content
-				.toolbar(.hidden, for: .automatic)
+				.toolbar(.hidden, for: .navigationBar)
 		} else {
 			content
 				.navigationBarHidden(true)
