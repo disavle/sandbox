@@ -25,7 +25,10 @@ let target = Target(
 	sources: ["Sandbox/Sources/**"],
 	resources: ["Sandbox/Resources/**"],
 	scripts: scripts,
-	dependencies: [],
+	dependencies: [
+		.external(name: "HTTPTypes"),
+		.external(name: "HTTPTypesFoundation")
+	],
 	settings: .settings(
 		base: baseSettings,
 		configurations: [.debug(name: .debug), .release(name: .release)]
